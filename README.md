@@ -8,5 +8,5 @@ Should build on any system
 ...
 #include "path/to/hsort.h"
 ...
-void hsort(void *base, size_t n, size_t size, int (*compar)(const void *, const void *));
+hsort(void *base, size_t n, size_t size, int (*compar)(const void *, const void *));
 ```
