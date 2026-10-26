@@ -9,7 +9,7 @@ typedef int (*cmp_r_ptr)(const void *, const void *, void *);
 void hsort(void *base, size_t n, size_t size, cmp_ptr compar);
 void hsort_r(void *base, size_t n, size_t size, cmp_r_ptr compar, void *arg);
 
-// #ifdef HSORT_IMPLEMENTATION
+#ifdef HSORT_IMPLEMENTATION
 #include <stdlib.h>
 #include <string.h>
 
@@ -110,6 +110,6 @@ void hsort_r(void *base, size_t n, size_t size, cmp_r_ptr compar, void *arg)
 
     free(buf);
 }
-// #endif
+#endif
 
 #endif
