@@ -1,12 +1,14 @@
-# Heapsort
-A basic heapsort implementation
-Should build on any system
+# j-sortlib
+Basic *sort implementations
+Should build on any system with a C99 compiler
 
 # Using
 ```c
-#define HSORT_IMPLEMENTATION
+#define ...SORT_IMPLEMENTATION
 ...
-#include "path/to/hsort.h"
+#include "path/to/...sort.h"
 ...
-hsort(void *base, size_t n, size_t size, int (*compar)(const void *, const void *));
+/*name*/sort(void *base, size_t n, size_t size, int (*compar)(const void *, const void *));
+...
+/*name*/sort_r(void *base, size_t n, size_t size, int (*compar)(const void *, const void *, void *), void *arg);
 ```
