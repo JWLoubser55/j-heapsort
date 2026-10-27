@@ -67,7 +67,7 @@ static inline void sift_down_r(void *base, size_t root, size_t end, size_t size,
 
 void hsort(void *base, size_t n, size_t size, cmp_ptr compar)
 {
-    if (!size) {
+    if (!size || n < 2) {
         return;
     }
 
@@ -90,7 +90,7 @@ void hsort(void *base, size_t n, size_t size, cmp_ptr compar)
 
 void hsort_r(void *base, size_t n, size_t size, cmp_r_ptr compar, void *arg)
 {
-    if (!size) {
+    if (!size || n < 2) {
         return;
     }
 
