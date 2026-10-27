@@ -13,7 +13,7 @@ void hsort_r(void *base, size_t n, size_t size, cmp_r_ptr compar, void *arg);
 #include <stdlib.h>
 #include <string.h>
 
-static inline void hsort_memcopy(void *x, void *y, void *buf, size_t size)
+static inline void hsort_memswap(void *x, void *y, void *buf, size_t size)
 {
     memcpy(buf, x, size);
     memcpy(x, y, size);
@@ -33,7 +33,7 @@ static inline void sift_down(void *base, size_t root, size_t end, size_t size,
 
         if (compar((char *)base + (root)*size, (char *)base + (child)*size) <
             0) {
-            hsort_memcopy((char *)base + (root)*size, (char *)base + (child)*size,
+            hsort_memswap((char *)base + (root)*size, (char *)base + (child)*size,
                        buf, size);
             root = child;
         } else {
@@ -56,7 +56,7 @@ static inline void sift_down_r(void *base, size_t root, size_t end, size_t size,
 
         if (compar((char *)base + (root)*size, (char *)base + (child)*size,
                    arg) < 0) {
-            hsort_memcopy((char *)base + (root)*size, (char *)base + (child)*size,
+            hsort_memswap((char *)base + (root)*size, (char *)base + (child)*size,
                        buf, size);
             root = child;
         } else {
@@ -81,7 +81,7 @@ void hsort(void *base, size_t n, size_t size, cmp_ptr compar)
 
     // heapsort
     for (size_t i = n - 1; i > 0; i--) {
-        hsort_memcopy(base, (char *)base + (i)*size, buf, size);
+        hsort_memswap(base, (char *)base + (i)*size, buf, size);
         sift_down(base, 0, i, size, compar, buf);
     }
 
@@ -104,7 +104,7 @@ void hsort_r(void *base, size_t n, size_t size, cmp_r_ptr compar, void *arg)
 
     // heapsort
     for (size_t i = n - 1; i > 0; i--) {
-        hsort_memcopy(base, (char *)base + (i)*size, buf, size);
+        hsort_memswap(base, (char *)base + (i)*size, buf, size);
         sift_down_r(base, 0, i, size, compar, arg, buf);
     }
 
