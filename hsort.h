@@ -10,6 +10,7 @@ void hsort(void *base, size_t n, size_t size, cmp_ptr compar);
 void hsort_r(void *base, size_t n, size_t size, cmp_r_ptr compar, void *arg);
 
 #ifdef HSORT_IMPLEMENTATION
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -73,6 +74,11 @@ void hsort(void *base, size_t n, size_t size, cmp_ptr compar)
 
     void *buf = malloc(size);
 
+    if (!buf) {
+        fprintf(stderr, "(hsort) Allocation failed!\n");
+        return;
+    }
+
     // heapify
     for (size_t start = (((n - 1) - 1) / 2) + 1; start > 0;) {
         start--;
@@ -95,6 +101,11 @@ void hsort_r(void *base, size_t n, size_t size, cmp_r_ptr compar, void *arg)
     }
 
     void *buf = malloc(size);
+
+    if (!buf) {
+        fprintf(stderr, "(hsort_r) Allocation failed!\n");
+        return;
+    }
 
     // heapify
     for (size_t start = (((n - 1) - 1) / 2) + 1; start > 0;) {
